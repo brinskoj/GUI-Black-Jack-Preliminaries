@@ -10,8 +10,8 @@
 ***   Course # and Title		:	   		CISC 192 - C++					***
 ***   Class Meeting Time		:	   		TTh 9:35 - 12:40				***
 ***   Instructor				:			Professor Forman				***
-***   Hours						:			21								***
-***   Difficulty				:			6								***
+***   Hours						:			5								***
+***   Difficulty				:			4								***
 ***   Completion Date			:			11/01/2012						***
 ***   Project Name				:  			JohnnyBlackJackPreliminaries	***	 
 ***																			***
@@ -213,7 +213,7 @@ namespace JohnnyBlackJackPreliminaries {
 			// 
 			// buttonExit
 			// 
-			this->buttonExit->Location = System::Drawing::Point(1078, 512);
+			this->buttonExit->Location = System::Drawing::Point(1141, 512);
 			this->buttonExit->Name = L"buttonExit";
 			this->buttonExit->Size = System::Drawing::Size(111, 38);
 			this->buttonExit->TabIndex = 3;
@@ -222,12 +222,13 @@ namespace JohnnyBlackJackPreliminaries {
 			// 
 			// buttonPlayOn
 			// 
-			this->buttonPlayOn->Location = System::Drawing::Point(72, 512);
+			this->buttonPlayOn->Location = System::Drawing::Point(12, 512);
 			this->buttonPlayOn->Name = L"buttonPlayOn";
 			this->buttonPlayOn->Size = System::Drawing::Size(111, 38);
 			this->buttonPlayOn->TabIndex = 4;
 			this->buttonPlayOn->Text = L"Play On";
 			this->buttonPlayOn->UseVisualStyleBackColor = true;
+			this->buttonPlayOn->Click += gcnew System::EventHandler(this, &Form1::buttonPlayOn_Click);
 			// 
 			// labelInstructions
 			// 
@@ -243,7 +244,7 @@ namespace JohnnyBlackJackPreliminaries {
 			// pictureBoxFiveL
 			// 
 			this->pictureBoxFiveL->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBoxFiveL.Image")));
-			this->pictureBoxFiveL->Location = System::Drawing::Point(189, 297);
+			this->pictureBoxFiveL->Location = System::Drawing::Point(129, 297);
 			this->pictureBoxFiveL->Name = L"pictureBoxFiveL";
 			this->pictureBoxFiveL->Size = System::Drawing::Size(73, 97);
 			this->pictureBoxFiveL->TabIndex = 6;
@@ -253,7 +254,7 @@ namespace JohnnyBlackJackPreliminaries {
 			// pictureBoxJackL
 			// 
 			this->pictureBoxJackL->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBoxJackL.Image")));
-			this->pictureBoxJackL->Location = System::Drawing::Point(145, 351);
+			this->pictureBoxJackL->Location = System::Drawing::Point(85, 351);
 			this->pictureBoxJackL->Name = L"pictureBoxJackL";
 			this->pictureBoxJackL->Size = System::Drawing::Size(73, 97);
 			this->pictureBoxJackL->TabIndex = 7;
@@ -263,7 +264,7 @@ namespace JohnnyBlackJackPreliminaries {
 			// pictureBoxAceL
 			// 
 			this->pictureBoxAceL->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBoxAceL.Image")));
-			this->pictureBoxAceL->Location = System::Drawing::Point(110, 400);
+			this->pictureBoxAceL->Location = System::Drawing::Point(50, 400);
 			this->pictureBoxAceL->Name = L"pictureBoxAceL";
 			this->pictureBoxAceL->Size = System::Drawing::Size(73, 97);
 			this->pictureBoxAceL->TabIndex = 8;
@@ -273,7 +274,7 @@ namespace JohnnyBlackJackPreliminaries {
 			// pictureBoxAceR
 			// 
 			this->pictureBoxAceR->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBoxAceR.Image")));
-			this->pictureBoxAceR->Location = System::Drawing::Point(1078, 400);
+			this->pictureBoxAceR->Location = System::Drawing::Point(1141, 400);
 			this->pictureBoxAceR->Name = L"pictureBoxAceR";
 			this->pictureBoxAceR->Size = System::Drawing::Size(73, 97);
 			this->pictureBoxAceR->TabIndex = 11;
@@ -283,7 +284,7 @@ namespace JohnnyBlackJackPreliminaries {
 			// pictureBoxJackR
 			// 
 			this->pictureBoxJackR->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBoxJackR.Image")));
-			this->pictureBoxJackR->Location = System::Drawing::Point(1041, 351);
+			this->pictureBoxJackR->Location = System::Drawing::Point(1104, 351);
 			this->pictureBoxJackR->Name = L"pictureBoxJackR";
 			this->pictureBoxJackR->Size = System::Drawing::Size(73, 97);
 			this->pictureBoxJackR->TabIndex = 10;
@@ -293,7 +294,7 @@ namespace JohnnyBlackJackPreliminaries {
 			// pictureBox5R
 			// 
 			this->pictureBox5R->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox5R.Image")));
-			this->pictureBox5R->Location = System::Drawing::Point(1005, 297);
+			this->pictureBox5R->Location = System::Drawing::Point(1068, 297);
 			this->pictureBox5R->Name = L"pictureBox5R";
 			this->pictureBox5R->Size = System::Drawing::Size(73, 97);
 			this->pictureBox5R->TabIndex = 9;
@@ -421,6 +422,7 @@ namespace JohnnyBlackJackPreliminaries {
 			this->pictureBoxSelectedCardLeft->Size = System::Drawing::Size(73, 97);
 			this->pictureBoxSelectedCardLeft->TabIndex = 22;
 			this->pictureBoxSelectedCardLeft->TabStop = false;
+			this->pictureBoxSelectedCardLeft->Visible = false;
 			// 
 			// pictureBoxSelectedCardRight
 			// 
@@ -429,6 +431,7 @@ namespace JohnnyBlackJackPreliminaries {
 			this->pictureBoxSelectedCardRight->Size = System::Drawing::Size(73, 97);
 			this->pictureBoxSelectedCardRight->TabIndex = 23;
 			this->pictureBoxSelectedCardRight->TabStop = false;
+			this->pictureBoxSelectedCardRight->Visible = false;
 			// 
 			// Form1
 			// 
@@ -523,7 +526,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 	///////////////////////////////////////////////////////
 	//				LOCAL VARIABLES/OBJECTS
 	///////////////////////////////////////////////////////
-	int sumValue;
+	int		sumValue;
 	Image^	selectedCardImage;
 	///////////////////////////////////////////////////////
 
@@ -537,26 +540,40 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 			{
 				labelFirstCardName->Text  = stringCardName;
 				labelFirstCardValue->Text = intCardValue.ToString();
+
+				// Show selected card in separate picture box
+				pictureBoxSelectedCardLeft->Visible = true;
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardLeft->Image = selectedCardImage;
+
 				firstCardSelected         = true;
 			}
 			else
 			{
 				labelSecondCardName->Text   = stringCardName;
 				labelSecondCardValue->Text  = intCardValue.ToString();
+
+				// Show selected card in separate picture box
+				pictureBoxSelectedCardLeft->Visible = true;
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardLeft->Image = selectedCardImage;
+
 				firstCardSelected			= false;
 			}
 		}
 
 		// The catch to see if we picked from both the left and right collection of cards already
 		else if (rightSide >= 1 && leftSide >= 1)
+		{
+			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Press the Play On button to play another game");
+		}
 	
 		else
+		{
+			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Choose a card from the right side!");
+		}
 	}
 
 	// If selected card is from the right side:
@@ -569,26 +586,40 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 			{
 				labelFirstCardName->Text  = stringCardName;
 				labelFirstCardValue->Text = intCardValue.ToString();
+
+				// Show selected card in separate picture box
+				pictureBoxSelectedCardRight->Visible = true;
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardRight->Image = selectedCardImage;
+
 				firstCardSelected         = true;
 			}
 			else
 			{
 				labelSecondCardName->Text   = stringCardName;
 				labelSecondCardValue->Text  = intCardValue.ToString();
+
+				// Show selected card in separate picture box
+				pictureBoxSelectedCardRight->Visible = true;
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardRight->Image = selectedCardImage;
+
 				firstCardSelected			= false;
 			}
 		}
 
 		// The catch to see if we picked from both the left and right collection of cards already
 		else if (rightSide >= 1 && leftSide >= 1)
+		{
+			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Press the Play On button to play another game");
+		}
 	
 		else
+		{
+			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Choose a card from the left side!");
+		}
 	}
 
 	// After two cards are selected, display the sum of both card values
@@ -597,9 +628,10 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 		labelHorizontalRule->Visible = true;
 		labelSumName->Visible = true;
 		labelSumValue->Visible = true;
-		sumValue = int::Parse(labelFirstCardValue->Text)
+		sumValue = int::Parse(labelFirstCardValue->Text)	// Can not TryParse here for some reason
 				 + int::Parse(labelSecondCardValue->Text);
 		labelSumValue->Text = sumValue.ToString();
+		observeCards(sumValue);
 		labelObservation->Visible = true;
 	}
 
@@ -609,6 +641,18 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 	//System::Media::SystemSounds::Exclamation->Play();
 	//System::Media::SystemSounds::Hand->Play();
 	//System::Media::SystemSounds::Question->Play();
+}
+
+void observeCards(int sumValue)
+{
+	if (sumValue == 21)
+		labelObservation->Text = "Winner Winner, Chicken Dinner";
+	else if (sumValue > 21)
+		labelObservation->Text = "B U S T E D !";
+	else if (sumValue >= 16)
+		labelObservation->Text = "You should stay";	
+	else
+		labelObservation->Text = "You should get hit";
 }
 
 void displayDateTime()
@@ -657,6 +701,22 @@ private: System::Void pictureBox5R_Click(System::Object^  sender, System::EventA
 private: System::Void pictureBoxJackR_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
 			 selectCard("Jack", 10, "c", "right");
+		 }
+private: System::Void buttonPlayOn_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 // Reset everything back to starting values
+			 pictureBoxSelectedCardLeft->Visible = false;
+			 pictureBoxSelectedCardRight->Visible = false;
+			 labelObservation->Visible = false;
+			 labelHorizontalRule->Visible = false;
+			 labelSumName->Visible = false;
+			 labelSumValue->Visible = false;
+			 labelFirstCardName->Text = "1st Card Name";
+			 labelFirstCardValue->Text = ". . .";
+			 labelSecondCardName->Text = "2nd Card Name";
+			 labelSecondCardValue->Text = ". . .";
+			 leftSide = 0;
+			 rightSide = 0;
 		 }
 };
 }
