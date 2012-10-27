@@ -120,6 +120,8 @@ namespace JohnnyBlackJackPreliminaries {
 	private: System::Windows::Forms::Label^  labelSumName;
 	private: System::Windows::Forms::Label^  labelSumValue;
 	private: System::Windows::Forms::Label^  labelObservation;
+	private: System::Windows::Forms::PictureBox^  pictureBoxSelectedCardLeft;
+	private: System::Windows::Forms::PictureBox^  pictureBoxSelectedCardRight;
 
 	private:
 		/// <summary>
@@ -157,12 +159,16 @@ namespace JohnnyBlackJackPreliminaries {
 			this->labelSumName = (gcnew System::Windows::Forms::Label());
 			this->labelSumValue = (gcnew System::Windows::Forms::Label());
 			this->labelObservation = (gcnew System::Windows::Forms::Label());
+			this->pictureBoxSelectedCardLeft = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBoxSelectedCardRight = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxFiveL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxJackL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxAceL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxAceR))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxJackR))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox5R))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardLeft))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardRight))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// labelWelcome
@@ -408,11 +414,29 @@ namespace JohnnyBlackJackPreliminaries {
 			this->labelObservation->Text = L"Observation";
 			this->labelObservation->Visible = false;
 			// 
+			// pictureBoxSelectedCardLeft
+			// 
+			this->pictureBoxSelectedCardLeft->Location = System::Drawing::Point(315, 297);
+			this->pictureBoxSelectedCardLeft->Name = L"pictureBoxSelectedCardLeft";
+			this->pictureBoxSelectedCardLeft->Size = System::Drawing::Size(73, 97);
+			this->pictureBoxSelectedCardLeft->TabIndex = 22;
+			this->pictureBoxSelectedCardLeft->TabStop = false;
+			// 
+			// pictureBoxSelectedCardRight
+			// 
+			this->pictureBoxSelectedCardRight->Location = System::Drawing::Point(900, 297);
+			this->pictureBoxSelectedCardRight->Name = L"pictureBoxSelectedCardRight";
+			this->pictureBoxSelectedCardRight->Size = System::Drawing::Size(73, 97);
+			this->pictureBoxSelectedCardRight->TabIndex = 23;
+			this->pictureBoxSelectedCardRight->TabStop = false;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1264, 562);
+			this->Controls->Add(this->pictureBoxSelectedCardRight);
+			this->Controls->Add(this->pictureBoxSelectedCardLeft);
 			this->Controls->Add(this->labelObservation);
 			this->Controls->Add(this->labelSumValue);
 			this->Controls->Add(this->labelSumName);
@@ -443,6 +467,8 @@ namespace JohnnyBlackJackPreliminaries {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxAceR))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxJackR))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox5R))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardLeft))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardRight))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -492,12 +518,13 @@ namespace JohnnyBlackJackPreliminaries {
 ***************************************************************
 **************************************************************/
 
-void selectCard(String^ stringCardName, int intCardValue, String^ leftOrRight)
+void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit, String^ leftOrRight)
 {
 	///////////////////////////////////////////////////////
 	//				LOCAL VARIABLES/OBJECTS
 	///////////////////////////////////////////////////////
 	int sumValue;
+	Image^	selectedCardImage;
 	///////////////////////////////////////////////////////
 
 	// If selected card is from the left side:
@@ -510,12 +537,16 @@ void selectCard(String^ stringCardName, int intCardValue, String^ leftOrRight)
 			{
 				labelFirstCardName->Text  = stringCardName;
 				labelFirstCardValue->Text = intCardValue.ToString();
+				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
+				pictureBoxSelectedCardLeft->Image = selectedCardImage;
 				firstCardSelected         = true;
 			}
 			else
 			{
 				labelSecondCardName->Text   = stringCardName;
 				labelSecondCardValue->Text  = intCardValue.ToString();
+				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
+				pictureBoxSelectedCardLeft->Image = selectedCardImage;
 				firstCardSelected			= false;
 			}
 		}
@@ -538,12 +569,16 @@ void selectCard(String^ stringCardName, int intCardValue, String^ leftOrRight)
 			{
 				labelFirstCardName->Text  = stringCardName;
 				labelFirstCardValue->Text = intCardValue.ToString();
+				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
+				pictureBoxSelectedCardRight->Image = selectedCardImage;
 				firstCardSelected         = true;
 			}
 			else
 			{
 				labelSecondCardName->Text   = stringCardName;
 				labelSecondCardValue->Text  = intCardValue.ToString();
+				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
+				pictureBoxSelectedCardRight->Image = selectedCardImage;
 				firstCardSelected			= false;
 			}
 		}
@@ -596,32 +631,32 @@ private: System::Void buttonDateTime_Click(System::Object^  sender, System::Even
 
 private: System::Void pictureBoxAceL_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
-			 selectCard("Ace", 11, "left");
+			 selectCard("Ace", 11, "s", "left");
 		 }
 
 private: System::Void pictureBoxFiveL_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
-			 selectCard("Five", 5, "left");
+			 selectCard("Five", 5, "d", "left");
 		 }
 
 private: System::Void pictureBoxJackL_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
-			 selectCard("Jack", 10, "left");
+			 selectCard("Jack", 10, "c", "left");
 		 }
 
 private: System::Void pictureBoxAceR_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
-			 selectCard("Ace", 11, "right");
+			 selectCard("Ace", 11, "s", "right");
 		 }
 
 private: System::Void pictureBox5R_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
-			 selectCard("Five", 5, "right");
+			 selectCard("Five", 5, "d", "right");
 		 }
 
 private: System::Void pictureBoxJackR_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
-			 selectCard("Jack", 10, "right");
+			 selectCard("Jack", 10, "c", "right");
 		 }
 };
 }

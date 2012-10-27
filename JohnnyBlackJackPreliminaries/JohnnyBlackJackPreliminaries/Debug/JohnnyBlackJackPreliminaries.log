@@ -1,4 +1,4 @@
-﻿Build started 10/26/2012 5:18:00 PM.
+﻿Build started 10/26/2012 5:40:05 PM.
      1>Project "C:\Users\tripgod\Dropbox\cplusplus\GUI-Black-Jack-Preliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\JohnnyBlackJackPreliminaries.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -8,12 +8,12 @@
          All outputs are up-to-date.
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\JohnnyBlackJackPreliminaries.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt JohnnyBlackJackPreliminaries.cpp /clr:nostdlib 
          JohnnyBlackJackPreliminaries.cpp
-     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(506): warning C4804: '<' : unsafe use of type 'bool' in operation
-     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(524): warning C4804: '>=' : unsafe use of type 'bool' in operation
-     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(524): warning C4804: '>=' : unsafe use of type 'bool' in operation
-     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(534): warning C4804: '<' : unsafe use of type 'bool' in operation
-     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(552): warning C4804: '>=' : unsafe use of type 'bool' in operation
-     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(552): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(533): warning C4804: '<' : unsafe use of type 'bool' in operation
+     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(555): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(555): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(565): warning C4804: '<' : unsafe use of type 'bool' in operation
+     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(587): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\tripgod\dropbox\cplusplus\gui-black-jack-preliminaries\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(587): warning C4804: '>=' : unsafe use of type 'bool' in operation
          All outputs are up-to-date.
        CoreResGen:
          All outputs are up-to-date.
@@ -35,4 +35,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.48
+Time Elapsed 00:00:02.82
