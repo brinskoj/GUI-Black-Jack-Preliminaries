@@ -20,22 +20,44 @@
 ***                                       							***
 ***						PROGRAM DESCRIPTION              			***
 ***																	***
-***	 
+***	 Has user select one card from the left side and one card from	***
+***	 the right side. If user tries to select a card from the same	***
+***	 side as the card previously, user will get a message saying	***
+***	 to choose a card from the other side. If the user selects an	***
+***	 Ace, user will be asked to give the value a 1 or 11. Shows		***
+***	 the selected card from each side in a separate picture box.	***
+***	 After both cards are selected, adds the card values and		***
+***	 determines if user should hit or stay. If user has blackjack	***
+***	 by getting a sum of 21 or busts by going over 21 the user will	***
+***	 be informed through a label. User can reset all values by		***
+***	 clicking the "Play On" button. When user exits, music is		***
+***	 played, shows the stats of the game, and finally the ID Info	***
+***	 and stars earned.												***
 ***                                                         		***
 ***********************************************************************
 ***********************************************************************
 ***																	***
 ***					Event-Defined Function List						***
 ***                                                         		***
-***		
+***		buttonDateTime_Click										***
+***		buttonExit_Click											***
+***		pictureBoxAceL_Click										***
+***		pictureBoxFiveL_Click										***
+***		pictureBoxJackL_Click										***
+***		pictureBoxAceR_Click										***
+***		pictureBox5R_Click											***
+***		pictureBoxJackR_Click										***
+***		buttonPlayOn_Click											***
 ***																	***
 ***********************************************************************
 ***********************************************************************
 ***																	***
 ***					Custom-Defined Function List					***
 ***                                                         		***
-***		
-***		
+***		displayDateTime												***
+***		farewell													***
+***		observeCards												***
+***		selectCard													***
 ***																	***
 ***********************************************************************
 ***********************************************************************
@@ -61,6 +83,7 @@
 ***********************************************************************
 ***********************************************************************
 **********************************************************************/
+
 #pragma once
 
 namespace JohnnyBlackJackPreliminaries {
@@ -515,15 +538,43 @@ namespace JohnnyBlackJackPreliminaries {
 ***************************************************************
 **************************************************************/
 
+/**************************************************************
+***                                                			***
+***    buttonDateTime_Click									***
+***                                                			***
+***		Calls displayDateTime function.						***
+***                                                			***
+**************************************************************/
+
 private: System::Void buttonDateTime_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
 			 displayDateTime();
 		 }
 
+/**************************************************************
+***                                                			***
+***    buttonExit_Click										***
+***                                                			***
+***		Calls the farewell function.						***
+***                                                			***
+**************************************************************/
+
 private: System::Void buttonExit_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
 			 farewell();
 		 }
+
+/**************************************************************
+***                                                			***
+***    pictureBoxAceL_Click									***
+***                                                			***
+***		Calls selectCard function the name of card, card	***
+***		value, card suit, and which side the card is on.	***
+***		Checks to see if you already selected a card from	***
+***		the left side already. If so, lets selectCard		***
+***		function take over and handle the error handling.	***
+***                                                			***
+**************************************************************/
 
 private: System::Void pictureBoxAceL_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
@@ -552,15 +603,45 @@ private: System::Void pictureBoxAceL_Click(System::Object^  sender, System::Even
 				 selectCard("Ace", 999, "s", "left");
 		 }
 
+/**************************************************************
+***                                                			***
+***    pictureBoxFiveL_Click								***
+***                                                			***
+***		Calls selectCard function the name of card, card	***
+***		value, card suit, and which side the card is on.	***
+***                                                			***
+**************************************************************/
+
 private: System::Void pictureBoxFiveL_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
 			 selectCard("Five", 5, "d", "left");
 		 }
 
+/**************************************************************
+***                                                			***
+***    pictureBoxJackL_Click								***
+***                                                			***
+***		Calls selectCard function the name of card, card	***
+***		value, card suit, and which side the card is on.	***
+***                                                			***
+**************************************************************/
+
 private: System::Void pictureBoxJackL_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
 			 selectCard("Jack", 10, "c", "left");
 		 }
+
+/**************************************************************
+***                                                			***
+***    pictureBoxAceR_Click									***
+***                                                			***
+***		Calls selectCard function the name of card, card	***
+***		value, card suit, and which side the card is on.	***
+***		Checks to see if you already selected a card from	***
+***		the right side already. If so, lets selectCard		***
+***		function take over and handle the error handling.	***
+***                                                			***
+**************************************************************/
 
 private: System::Void pictureBoxAceR_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
@@ -589,15 +670,44 @@ private: System::Void pictureBoxAceR_Click(System::Object^  sender, System::Even
 				 selectCard("Ace", 999, "s", "right");
 		 }
 
+/**************************************************************
+***                                                			***
+***    pictureBox5R_Click									***
+***                                                			***
+***		Calls selectCard function the name of card, card	***
+***		value, card suit, and which side the card is on.	***
+***                                                			***
+**************************************************************/
+
 private: System::Void pictureBox5R_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
 			 selectCard("Five", 5, "d", "right");
 		 }
 
+/**************************************************************
+***                                                			***
+***    pictureBoxJackR_Click								***
+***                                                			***
+***		Calls selectCard function the name of card, card	***
+***		value, card suit, and which side the card is on.	***
+***                                                			***
+**************************************************************/
+
 private: System::Void pictureBoxJackR_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
 			 selectCard("Jack", 10, "c", "right");
 		 }
+
+/**************************************************************
+***                                                			***
+***    buttonPlayOn_Click									***
+***                                                			***
+***		Hides picture boxes for selected cards, label sum	***
+***		values, and observation. Resets text in labels for	***
+***		card name and value. Sets leftSide and rightSide	***
+***		variables to 0.  Now we're good for another game.	***
+***                                                			***
+**************************************************************/
 
 private: System::Void buttonPlayOn_Click(System::Object^  sender, System::EventArgs^  e) 
 		 {
@@ -632,6 +742,14 @@ private: System::Void buttonPlayOn_Click(System::Object^  sender, System::EventA
 ***************************************************************
 **************************************************************/
 
+/**************************************************************
+***                                                			***
+***    displayDateTime										***
+***                                                			***
+***		Shows date and time in short form in a label.		***
+***                                                			***
+**************************************************************/
+
 void displayDateTime()
 {
 	///////////////////////////////////////////////////////
@@ -644,6 +762,16 @@ void displayDateTime()
 						+ "\n\t"
 						+ dateTimeNow.ToShortTimeString();		
 }
+
+/**************************************************************
+***                                                			***
+***    farewell												***
+***                                                			***
+***		Plays music from the game Portal. Bids player		***
+***		farewell and shows stats by use of the counters.	***
+***		Displays message ID info and stars in message boxes	***
+***                                                			***
+**************************************************************/
 
 void farewell()
 {
@@ -697,6 +825,15 @@ void farewell()
 	Close();
 }
 
+/**************************************************************
+***                                                			***
+***    observeCards											***
+***                                                			***
+***		Display results of the sum of the card values in a	***
+***		label. Adds one to the appropriate counter.			***
+***                                                			***
+**************************************************************/
+
 void observeCards(int sumValue)
 {
 	if (sumValue == 21)
@@ -723,6 +860,21 @@ void observeCards(int sumValue)
 		labelObservation->Text = "You should get hit";
 	}
 }
+
+/**************************************************************
+***                                                			***
+***    selectCard											***
+***                                                			***
+***		Makes you only select from one set of cards.		***
+***		Will throw an error in a message box if you try.	***
+***		Checks to see if you already selected a card.		***
+***		Shows selected card in separate picture box as		***
+***		well as name and value in appropriate label.		***
+***		After two cards are selected, one from each column,	***
+***		adds the value of the selected cards and passes the	***
+***		sum to the observeCards function.					***
+***                                                			***
+**************************************************************/
 
 void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit, String^ leftOrRight)
 {
@@ -867,11 +1019,6 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 	}
 
 	SystemSounds::Asterisk->Play();
-	//Other SystemSounds are:
-	//System::Media::SystemSounds::Beep->Play();
-	//System::Media::SystemSounds::Exclamation->Play();
-	//System::Media::SystemSounds::Hand->Play();
-	//System::Media::SystemSounds::Question->Play();
 }
 
 /**************************************************************
@@ -882,17 +1029,6 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 ***************************************************************
 **************************************************************/
 
-
-
-
-
-
-
-
-
-
-
-
-};
+	};
 }
 
