@@ -12,7 +12,7 @@
 ***   Instructor				:			Professor Forman				***
 ***   Hours						:			9								***
 ***   Difficulty				:			4								***
-***   Completion Date			:			11/01/2012						***
+***   Completion Date			:			10/28/2012						***
 ***   Project Name				:  			JohnnyBlackJackPreliminaries	***	 
 ***																			***
 *******************************************************************************
@@ -799,7 +799,7 @@ void farewell()
 				 "	Instructor			:	Professor Forman\n"
 				 "	Hours			:	9\n"
 				 "	Difficulty			:	4\n"
-				 "	Completion Date		:	11/01/2012\n"
+				 "	Completion Date		:	10/28/2012\n"
 				 "	Project Name		:	JohnnyBJPreliminaries\n\n"
 				 "**************************************************************************************\n"
 				 "**************************************** CREDITS ************************************\n\n"
@@ -812,7 +812,7 @@ void farewell()
 		MessageBox::Show(
 				 "*************************************************************************************\n"
 				 "************************************** # OF STARS **********************************\n\n"
-				 "6 stars\n\n"
+				 "7 stars\n\n"
 				 "*************************************************************************************\n"
 				 "**************************************** STARS *************************************\n\n"
 				 "1. Display image of card selected in the appropriate picture box\n"
@@ -821,6 +821,7 @@ void farewell()
 				 "4. When player clicks card, display in message box the card name and value.\n"
 				 "5. If the player selects an Ace, give the player a choice of using the Ace as 11 or 1.\n"
 				 "6. In the farewell, report how many times the card sums were of each result.\n"
+				 "7. Demo before the due date.\n"
 				 );
 	Close();
 }
@@ -888,7 +889,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 	// If selected card is from the left side:
 	if (leftOrRight == "left")
 	{
-		if (leftSide < 1)
+		if (leftSide < 1)	// Check to see if this is the first time selecting a card from the left side
 		{
 			leftSide++;		// This will make sure we don't pick from the left side again
 			if ( firstCardSelected == false)
@@ -910,7 +911,8 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 				// Confirm that this card is the first selected
 				firstCardSelected         = true;
 			}
-			else
+
+			else	// We must've already selected the first card
 			{
 				// Burpback card selection
 				MessageBox::Show(String::Concat("Thanks for selecting the ", stringCardName, 
@@ -931,14 +933,14 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 			}
 		}
 
-		// The catch to see if we picked from both the left and right collection of cards already
+		// The catch to see if we picked from BOTH the left AND right collection of cards already
 		else if (rightSide >= 1 && leftSide >= 1)
 		{
 			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Press the Play On button to play another game");
 		}
 
-		else
+		else	// This must not be the first time you clicked on the left side
 		{
 			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Choose a card from the right side!");
@@ -948,7 +950,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 	// If selected card is from the right side:
 	if (leftOrRight == "right")
 	{
-		if (rightSide < 1)
+		if (rightSide < 1)	// Check to see if this is the first time selecting a card from the right side
 		{
 			rightSide++;	// This will make sure we don't pick from the right side again
 			if ( firstCardSelected == false)
@@ -970,7 +972,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 				// Confirm that this card is the first selected
 				firstCardSelected         = true;
 			}
-			else
+			else	// We must've already selected the first card
 			{
 				// Burpback card selection
 				MessageBox::Show(String::Concat("Thanks for selecting the ", stringCardName, 
@@ -998,7 +1000,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 			MessageBox::Show("Press the Play On button to play another game");
 		}
 	
-		else
+		else	// This must not be the first time you clicked on the left side
 		{
 			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Choose a card from the left side!");
@@ -1014,10 +1016,13 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 		sumValue = int::Parse(labelFirstCardValue->Text)	// Can not TryParse here for some reason
 				 + int::Parse(labelSecondCardValue->Text);
 		labelSumValue->Text = sumValue.ToString();
+
+		// Let's see if we've won or not
 		observeCards(sumValue);
 		labelObservation->Visible = true;
 	}
 
+	// Let user know that a bunch of stuff just happened
 	SystemSounds::Asterisk->Play();
 }
 
@@ -1031,4 +1036,3 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 
 	};
 }
-
