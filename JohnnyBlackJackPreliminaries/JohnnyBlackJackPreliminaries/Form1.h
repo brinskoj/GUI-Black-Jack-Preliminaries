@@ -10,7 +10,7 @@
 ***   Course # and Title		:	   		CISC 192 - C++					***
 ***   Class Meeting Time		:	   		TTh 9:35 - 12:40				***
 ***   Instructor				:			Professor Forman				***
-***   Hours						:			5								***
+***   Hours						:			9								***
 ***   Difficulty				:			4								***
 ***   Completion Date			:			11/01/2012						***
 ***   Project Name				:  			JohnnyBlackJackPreliminaries	***	 
@@ -55,7 +55,8 @@
 ***																	***
 ***						      MEDIA				                    ***
 ***																	***
-***		
+***		Farewell music:												***
+***	http://www.gamefront.com/files/12899141/Portal_Radio_Loop		***
 ***																	***
 ***********************************************************************
 ***********************************************************************
@@ -70,7 +71,7 @@ namespace JohnnyBlackJackPreliminaries {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System::Media;		//NOTE:  I added this namespace to play sound!!
+	using namespace System::Media;		// For play sound!!
 
 	/// <summary>
 	/// Summary for Form1
@@ -122,6 +123,7 @@ namespace JohnnyBlackJackPreliminaries {
 	private: System::Windows::Forms::Label^  labelObservation;
 	private: System::Windows::Forms::PictureBox^  pictureBoxSelectedCardLeft;
 	private: System::Windows::Forms::PictureBox^  pictureBoxSelectedCardRight;
+	private: System::Windows::Forms::PictureBox^  pictureBoxBJGif;
 
 	private:
 		/// <summary>
@@ -161,6 +163,7 @@ namespace JohnnyBlackJackPreliminaries {
 			this->labelObservation = (gcnew System::Windows::Forms::Label());
 			this->pictureBoxSelectedCardLeft = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBoxSelectedCardRight = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBoxBJGif = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxFiveL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxJackL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxAceL))->BeginInit();
@@ -169,6 +172,7 @@ namespace JohnnyBlackJackPreliminaries {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox5R))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardLeft))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardRight))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxBJGif))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// labelWelcome
@@ -219,6 +223,7 @@ namespace JohnnyBlackJackPreliminaries {
 			this->buttonExit->TabIndex = 3;
 			this->buttonExit->Text = L"Exit";
 			this->buttonExit->UseVisualStyleBackColor = true;
+			this->buttonExit->Click += gcnew System::EventHandler(this, &Form1::buttonExit_Click);
 			// 
 			// buttonPlayOn
 			// 
@@ -433,11 +438,21 @@ namespace JohnnyBlackJackPreliminaries {
 			this->pictureBoxSelectedCardRight->TabStop = false;
 			this->pictureBoxSelectedCardRight->Visible = false;
 			// 
+			// pictureBoxBJGif
+			// 
+			this->pictureBoxBJGif->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBoxBJGif.Image")));
+			this->pictureBoxBJGif->Location = System::Drawing::Point(36, 39);
+			this->pictureBoxBJGif->Name = L"pictureBoxBJGif";
+			this->pictureBoxBJGif->Size = System::Drawing::Size(320, 180);
+			this->pictureBoxBJGif->TabIndex = 24;
+			this->pictureBoxBJGif->TabStop = false;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1264, 562);
+			this->Controls->Add(this->pictureBoxBJGif);
 			this->Controls->Add(this->pictureBoxSelectedCardRight);
 			this->Controls->Add(this->pictureBoxSelectedCardLeft);
 			this->Controls->Add(this->labelObservation);
@@ -472,6 +487,7 @@ namespace JohnnyBlackJackPreliminaries {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox5R))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardLeft))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxSelectedCardRight))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxBJGif))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -485,6 +501,10 @@ namespace JohnnyBlackJackPreliminaries {
 	static bool leftSide			= 0;
 	static bool rightSide			= 0;
 	static int  counter				= 0;
+	static int	countBJ				= 0;
+	static int	countBusted			= 0;
+	static int	countGreaterThan	= 0;
+	static int	countLessThan		= 0;
 	///////////////////////////////////////////////////////
 
 /**************************************************************
@@ -494,6 +514,107 @@ namespace JohnnyBlackJackPreliminaries {
 ***                                                			***
 ***************************************************************
 **************************************************************/
+
+private: System::Void buttonDateTime_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 displayDateTime();
+		 }
+
+private: System::Void buttonExit_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 farewell();
+		 }
+
+private: System::Void pictureBoxAceL_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 ///////////////////////////////////////////////////////
+			 //				LOCAL VARIABLES/OBJECTS
+			 ///////////////////////////////////////////////////////
+			 Windows::Forms::DialogResult clickedAce;
+			 ///////////////////////////////////////////////////////
+
+			 if (leftSide == 0)		// Make sure we haven't previously selected card from left side
+			 {
+				 clickedAce = MessageBox::Show("Would you like to make this Ace hard?\n\n"
+											   "Click YES to make this Ace count as 11.\n\n"
+											   "Otherwise, it will count as 1.", 
+											   "Select value for Ace",
+											   MessageBoxButtons::YesNo, MessageBoxIcon::Question);
+
+				 if (clickedAce == Windows::Forms::DialogResult::Yes)
+					 selectCard("Ace", 11, "s", "left");
+
+				 else
+					 selectCard("Ace", 1, "s", "left");
+			 }
+
+			 else	// Let selectCard() handle the error control
+				 selectCard("Ace", 999, "s", "left");
+		 }
+
+private: System::Void pictureBoxFiveL_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 selectCard("Five", 5, "d", "left");
+		 }
+
+private: System::Void pictureBoxJackL_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 selectCard("Jack", 10, "c", "left");
+		 }
+
+private: System::Void pictureBoxAceR_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 ///////////////////////////////////////////////////////
+			 //				LOCAL VARIABLES/OBJECTS
+			 ///////////////////////////////////////////////////////
+			 Windows::Forms::DialogResult clickedAce;
+			 ///////////////////////////////////////////////////////
+
+			 if (rightSide == 0)	// Make sure we haven't previously selected card from right side
+			 {
+				 clickedAce = MessageBox::Show("Would you like to make this Ace hard?\n\n"
+											   "Click YES to make this Ace count as 11.\n\n"
+											   "Otherwise, it will count as 1.", 
+											   "Select value for Ace",
+											   MessageBoxButtons::YesNo, MessageBoxIcon::Question);
+
+				 if (clickedAce == Windows::Forms::DialogResult::Yes)
+					 selectCard("Ace", 11, "s", "right");
+
+				 else
+					 selectCard("Ace", 1, "s", "right");
+			 }
+
+			 else	// Let selectCard() handle the error control
+				 selectCard("Ace", 999, "s", "right");
+		 }
+
+private: System::Void pictureBox5R_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 selectCard("Five", 5, "d", "right");
+		 }
+
+private: System::Void pictureBoxJackR_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 selectCard("Jack", 10, "c", "right");
+		 }
+
+private: System::Void buttonPlayOn_Click(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 // Reset everything back to starting values
+			 pictureBoxSelectedCardLeft->Visible = false;
+			 pictureBoxSelectedCardRight->Visible = false;
+			 labelObservation->Visible = false;
+			 labelHorizontalRule->Visible = false;
+			 labelSumName->Visible = false;
+			 labelSumValue->Visible = false;
+			 labelFirstCardName->Text = "1st Card Name";
+			 labelFirstCardValue->Text = ". . .";
+			 labelSecondCardName->Text = "2nd Card Name";
+			 labelSecondCardValue->Text = ". . .";
+			 leftSide = 0;
+			 rightSide = 0;
+		 }
 
 /**************************************************************
 ***************************************************************
@@ -511,15 +632,97 @@ namespace JohnnyBlackJackPreliminaries {
 ***************************************************************
 **************************************************************/
 
+void displayDateTime()
+{
+	///////////////////////////////////////////////////////
+	//				LOCAL VARIABLES/OBJECTS
+	///////////////////////////////////////////////////////
+	DateTime dateTimeNow = DateTime::Now;
+	///////////////////////////////////////////////////////
 
+	labelDateTime->Text = dateTimeNow.ToShortDateString()
+						+ "\n\t"
+						+ dateTimeNow.ToShortTimeString();		
+}
 
-/**************************************************************
-***************************************************************
-***                                                			***
-***			    END NON EVENT-DRIVEN FUNCTIONS				***
-***                                                			***
-***************************************************************
-**************************************************************/
+void farewell()
+{
+	/////////////////////////////////////////////////////////////
+	//		DECLARE LOCAL VARIABLES 
+	/////////////////////////////////////////////////////////////
+	System::Media::SoundPlayer soundPlayer ( "wav/portal.wav");
+	/////////////////////////////////////////////////////////////
+
+	soundPlayer.Play();
+
+	MessageBox::Show("Thanks for playing Johnny's BlackJack Prelims!\n\nYour play stats:\n"
+					+ "\nBlackJack:	" + countBJ.ToString()
+					+ "\n15<>21:	" + countGreaterThan.ToString()
+					+ "\n<16:	" + countLessThan.ToString()
+					+ "\nBusted:	" + countBusted.ToString() );
+	MessageBox::Show( 
+				"*************************************************************************************\n"
+				 "**************************************** ID INFO ************************************\n\n"
+				 "	Programmer		:	Johnny Brinsko\n"
+				 "	Assignment #		:	TA 2.BJ\n"
+				 "	Assignment Name		:	GUI BlackJack Preliminaries\n"
+				 "	Course # and Title		:	CISC 192  - C++\n"
+				 "	Class Meeting Time		:	TTh 9:35 - 12:40\n"
+				 "	Instructor			:	Professor Forman\n"
+				 "	Hours			:	9\n"
+				 "	Difficulty			:	4\n"
+				 "	Completion Date		:	11/01/2012\n"
+				 "	Project Name		:	JohnnyBJPreliminaries\n\n"
+				 "**************************************************************************************\n"
+				 "**************************************** CREDITS ************************************\n\n"
+				 "	Thanks to Professor Forman and Tim for completing the \n"
+				 "			learning triangle together\n\n"
+				 "*************************************************************************************\n"
+				 "**************************************** MEDIA *************************************\n\n"
+				 "Farewell music:\n"
+				 "http://www.gamefront.com/files/12899141/Portal_Radio_Loop" );
+		MessageBox::Show(
+				 "*************************************************************************************\n"
+				 "************************************** # OF STARS **********************************\n\n"
+				 "6 stars\n\n"
+				 "*************************************************************************************\n"
+				 "**************************************** STARS *************************************\n\n"
+				 "1. Display image of card selected in the appropriate picture box\n"
+				 "2. Prevent user from selecting two cards from a single column\n"
+				 "3. Click only once in each column\n"
+				 "4. When player clicks card, display in message box the card name and value.\n"
+				 "5. If the player selects an Ace, give the player a choice of using the Ace as 11 or 1.\n"
+				 "6. In the farewell, report how many times the card sums were of each result.\n"
+				 );
+	Close();
+}
+
+void observeCards(int sumValue)
+{
+	if (sumValue == 21)
+	{
+		countBJ++;
+		labelObservation->Text = "Winner Winner, Chicken Dinner";
+	}
+
+	else if (sumValue > 21)
+	{
+		countBusted++;
+		labelObservation->Text = "B U S T E D !";
+	}
+	
+	else if (sumValue >= 16)
+	{
+		countLessThan++;
+		labelObservation->Text = "You should stay";
+	}
+	
+	else
+	{
+		countGreaterThan++;
+		labelObservation->Text = "You should get hit";
+	}
+}
 
 void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit, String^ leftOrRight)
 {
@@ -538,6 +741,12 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 			leftSide++;		// This will make sure we don't pick from the left side again
 			if ( firstCardSelected == false)
 			{
+				// Burpback card selection
+				MessageBox::Show(String::Concat("Thanks for selecting the ", stringCardName, 
+												" with a value of ", intCardValue, "."),
+												"Your Selected Card");
+
+				// Show card info in labels
 				labelFirstCardName->Text  = stringCardName;
 				labelFirstCardValue->Text = intCardValue.ToString();
 
@@ -546,10 +755,17 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardLeft->Image = selectedCardImage;
 
+				// Confirm that this card is the first selected
 				firstCardSelected         = true;
 			}
 			else
 			{
+				// Burpback card selection
+				MessageBox::Show(String::Concat("Thanks for selecting the ", stringCardName, 
+												" with a value of ", intCardValue, "."),
+												"Your Selected Card");
+
+				// Show card info in labels
 				labelSecondCardName->Text   = stringCardName;
 				labelSecondCardValue->Text  = intCardValue.ToString();
 
@@ -558,6 +774,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardLeft->Image = selectedCardImage;
 
+				// Confirm that this card is the first selected
 				firstCardSelected			= false;
 			}
 		}
@@ -568,7 +785,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 			System::Media::SystemSounds::Hand->Play();
 			MessageBox::Show("Press the Play On button to play another game");
 		}
-	
+
 		else
 		{
 			System::Media::SystemSounds::Hand->Play();
@@ -584,6 +801,12 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 			rightSide++;	// This will make sure we don't pick from the right side again
 			if ( firstCardSelected == false)
 			{
+				// Burpback card selection
+				MessageBox::Show(String::Concat("Thanks for selecting the ", stringCardName, 
+												" with a value of ", intCardValue, "."),
+												"Your Selected Card");
+
+				// Show card info in labels
 				labelFirstCardName->Text  = stringCardName;
 				labelFirstCardValue->Text = intCardValue.ToString();
 
@@ -592,10 +815,17 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardRight->Image = selectedCardImage;
 
+				// Confirm that this card is the first selected
 				firstCardSelected         = true;
 			}
 			else
 			{
+				// Burpback card selection
+				MessageBox::Show(String::Concat("Thanks for selecting the ", stringCardName, 
+												" with a value of ", intCardValue, "."),
+												"Your Selected Card");
+
+				// Show card info in labels
 				labelSecondCardName->Text   = stringCardName;
 				labelSecondCardValue->Text  = intCardValue.ToString();
 
@@ -604,6 +834,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 				selectedCardImage = Image::FromFile(L"img/" + stringCardName + stringCardSuit + ".gif");
 				pictureBoxSelectedCardRight->Image = selectedCardImage;
 
+				// Confirm that this card is the first selected
 				firstCardSelected			= false;
 			}
 		}
@@ -643,81 +874,25 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 	//System::Media::SystemSounds::Question->Play();
 }
 
-void observeCards(int sumValue)
-{
-	if (sumValue == 21)
-		labelObservation->Text = "Winner Winner, Chicken Dinner";
-	else if (sumValue > 21)
-		labelObservation->Text = "B U S T E D !";
-	else if (sumValue >= 16)
-		labelObservation->Text = "You should stay";	
-	else
-		labelObservation->Text = "You should get hit";
-}
+/**************************************************************
+***************************************************************
+***                                                			***
+***			    END NON EVENT-DRIVEN FUNCTIONS				***
+***                                                			***
+***************************************************************
+**************************************************************/
 
-void displayDateTime()
-	{
-		///////////////////////////////////////////////////////
-		//				LOCAL VARIABLES/OBJECTS
-		///////////////////////////////////////////////////////
-		DateTime dateTimeNow = DateTime::Now;
-		///////////////////////////////////////////////////////
 
-		labelDateTime->Text = dateTimeNow.ToShortDateString()
-							+ "\n\t"
-							+ dateTimeNow.ToShortTimeString();		
-	}
 
-private: System::Void buttonDateTime_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 displayDateTime();
-		 }
 
-private: System::Void pictureBoxAceL_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 selectCard("Ace", 11, "s", "left");
-		 }
 
-private: System::Void pictureBoxFiveL_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 selectCard("Five", 5, "d", "left");
-		 }
 
-private: System::Void pictureBoxJackL_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 selectCard("Jack", 10, "c", "left");
-		 }
 
-private: System::Void pictureBoxAceR_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 selectCard("Ace", 11, "s", "right");
-		 }
 
-private: System::Void pictureBox5R_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 selectCard("Five", 5, "d", "right");
-		 }
 
-private: System::Void pictureBoxJackR_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 selectCard("Jack", 10, "c", "right");
-		 }
-private: System::Void buttonPlayOn_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 // Reset everything back to starting values
-			 pictureBoxSelectedCardLeft->Visible = false;
-			 pictureBoxSelectedCardRight->Visible = false;
-			 labelObservation->Visible = false;
-			 labelHorizontalRule->Visible = false;
-			 labelSumName->Visible = false;
-			 labelSumValue->Visible = false;
-			 labelFirstCardName->Text = "1st Card Name";
-			 labelFirstCardValue->Text = ". . .";
-			 labelSecondCardName->Text = "2nd Card Name";
-			 labelSecondCardValue->Text = ". . .";
-			 leftSide = 0;
-			 rightSide = 0;
-		 }
+
+
+
 };
 }
 
