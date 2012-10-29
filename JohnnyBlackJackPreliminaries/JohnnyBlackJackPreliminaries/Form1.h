@@ -108,6 +108,7 @@ namespace JohnnyBlackJackPreliminaries {
 			//
 			//TODO: Add the constructor code here
 			//
+			dateTimeStart = DateTime::Now;
 		}
 
 	protected:
@@ -147,12 +148,16 @@ namespace JohnnyBlackJackPreliminaries {
 	private: System::Windows::Forms::PictureBox^  pictureBoxSelectedCardLeft;
 	private: System::Windows::Forms::PictureBox^  pictureBoxSelectedCardRight;
 	private: System::Windows::Forms::PictureBox^  pictureBoxBJGif;
+	private: System::Windows::Forms::Button^  buttonElapsedTime;
+	private: System::Windows::Forms::Label^  labelElapsedTime;
+	private: System::Windows::Forms::Timer^  timerElapsedTime;
+	private: System::ComponentModel::IContainer^  components;
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -161,6 +166,7 @@ namespace JohnnyBlackJackPreliminaries {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->labelWelcome = (gcnew System::Windows::Forms::Label());
 			this->labelDateTime = (gcnew System::Windows::Forms::Label());
@@ -187,6 +193,9 @@ namespace JohnnyBlackJackPreliminaries {
 			this->pictureBoxSelectedCardLeft = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBoxSelectedCardRight = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBoxBJGif = (gcnew System::Windows::Forms::PictureBox());
+			this->buttonElapsedTime = (gcnew System::Windows::Forms::Button());
+			this->labelElapsedTime = (gcnew System::Windows::Forms::Label());
+			this->timerElapsedTime = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxFiveL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxJackL))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBoxAceL))->BeginInit();
@@ -240,6 +249,12 @@ namespace JohnnyBlackJackPreliminaries {
 			// 
 			// buttonExit
 			// 
+			this->buttonExit->FlatAppearance->BorderColor = System::Drawing::Color::YellowGreen;
+			this->buttonExit->FlatAppearance->BorderSize = 4;
+			this->buttonExit->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Yellow;
+			this->buttonExit->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), 
+				static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->buttonExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonExit->Location = System::Drawing::Point(1141, 512);
 			this->buttonExit->Name = L"buttonExit";
 			this->buttonExit->Size = System::Drawing::Size(111, 38);
@@ -250,6 +265,12 @@ namespace JohnnyBlackJackPreliminaries {
 			// 
 			// buttonPlayOn
 			// 
+			this->buttonPlayOn->FlatAppearance->BorderColor = System::Drawing::Color::YellowGreen;
+			this->buttonPlayOn->FlatAppearance->BorderSize = 4;
+			this->buttonPlayOn->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Yellow;
+			this->buttonPlayOn->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), 
+				static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->buttonPlayOn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonPlayOn->Location = System::Drawing::Point(12, 512);
 			this->buttonPlayOn->Name = L"buttonPlayOn";
 			this->buttonPlayOn->Size = System::Drawing::Size(111, 38);
@@ -470,11 +491,46 @@ namespace JohnnyBlackJackPreliminaries {
 			this->pictureBoxBJGif->TabIndex = 24;
 			this->pictureBoxBJGif->TabStop = false;
 			// 
+			// buttonElapsedTime
+			// 
+			this->buttonElapsedTime->FlatAppearance->BorderColor = System::Drawing::Color::YellowGreen;
+			this->buttonElapsedTime->FlatAppearance->BorderSize = 4;
+			this->buttonElapsedTime->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Yellow;
+			this->buttonElapsedTime->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), 
+				static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->buttonElapsedTime->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonElapsedTime->Location = System::Drawing::Point(1051, 135);
+			this->buttonElapsedTime->Name = L"buttonElapsedTime";
+			this->buttonElapsedTime->Size = System::Drawing::Size(138, 38);
+			this->buttonElapsedTime->TabIndex = 25;
+			this->buttonElapsedTime->Text = L"Show Elapsed Time";
+			this->buttonElapsedTime->UseVisualStyleBackColor = true;
+			this->buttonElapsedTime->Click += gcnew System::EventHandler(this, &Form1::buttonElapsedTime_Click);
+			// 
+			// labelElapsedTime
+			// 
+			this->labelElapsedTime->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->labelElapsedTime->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->labelElapsedTime->Location = System::Drawing::Point(957, 176);
+			this->labelElapsedTime->Name = L"labelElapsedTime";
+			this->labelElapsedTime->Size = System::Drawing::Size(295, 63);
+			this->labelElapsedTime->TabIndex = 26;
+			this->labelElapsedTime->Text = L"0 seconds elapsed";
+			this->labelElapsedTime->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// timerElapsedTime
+			// 
+			this->timerElapsedTime->Interval = 1000;
+			this->timerElapsedTime->Tick += gcnew System::EventHandler(this, &Form1::timerElapsedTime_Tick);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1264, 562);
+			this->Controls->Add(this->labelElapsedTime);
+			this->Controls->Add(this->buttonElapsedTime);
 			this->Controls->Add(this->pictureBoxBJGif);
 			this->Controls->Add(this->pictureBoxSelectedCardRight);
 			this->Controls->Add(this->pictureBoxSelectedCardLeft);
@@ -528,6 +584,7 @@ namespace JohnnyBlackJackPreliminaries {
 	static int	countBusted			= 0;
 	static int	countGreaterThan	= 0;
 	static int	countLessThan		= 0;
+	DateTime	dateTimeStart;
 	///////////////////////////////////////////////////////
 
 /**************************************************************
@@ -722,6 +779,7 @@ private: System::Void buttonPlayOn_Click(System::Object^  sender, System::EventA
 			 labelFirstCardValue->Text = ". . .";
 			 labelSecondCardName->Text = "2nd Card Name";
 			 labelSecondCardValue->Text = ". . .";
+			 firstCardSelected = false;
 			 leftSide = 0;
 			 rightSide = 0;
 		 }
@@ -781,7 +839,7 @@ void farewell()
 	System::Media::SoundPlayer soundPlayer ( "wav/portal.wav");
 	/////////////////////////////////////////////////////////////
 
-	soundPlayer.Play();
+	soundPlayer.PlayLooping();
 
 	MessageBox::Show("Thanks for playing Johnny's BlackJack Prelims!\n\nYour play stats:\n"
 					+ "\nBlackJack:	" + countBJ.ToString()
@@ -882,7 +940,9 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 	///////////////////////////////////////////////////////
 	//				LOCAL VARIABLES/OBJECTS
 	///////////////////////////////////////////////////////
-	int		sumValue;
+	int		sumValue,
+			firstCardValue,
+			secondCardValue;
 	Image^	selectedCardImage;
 	///////////////////////////////////////////////////////
 
@@ -1013,8 +1073,11 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 		labelHorizontalRule->Visible = true;
 		labelSumName->Visible = true;
 		labelSumValue->Visible = true;
-		sumValue = int::Parse(labelFirstCardValue->Text)	// Can not TryParse here for some reason
-				 + int::Parse(labelSecondCardValue->Text);
+
+		// Convert string of the card value to int so we can add it up
+		int::TryParse(labelFirstCardValue->Text, firstCardValue);
+		int::TryParse(labelSecondCardValue->Text, secondCardValue);
+		sumValue = firstCardValue + secondCardValue;
 		labelSumValue->Text = sumValue.ToString();
 
 		// Let's see if we've won or not
@@ -1034,5 +1097,55 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 ***************************************************************
 **************************************************************/
 
-	};
+	private: System::Void buttonElapsedTime_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 ///////////////////////////////////////////////////////
+				 //		LOCAL VARIABLES/OBJECTS
+				 ///////////////////////////////////////////////////////
+				 bool	isUpdating;
+				 ///////////////////////////////////////////////////////
+				 
+				 if (isUpdating == false)
+				 {
+					 buttonElapsedTime->Text = isUpdating.ToString();
+					 timerElapsedTime->Enabled = true;
+				 }
+
+				 else
+				 {
+					 buttonElapsedTime->Text = isUpdating.ToString();
+					 timerElapsedTime->Enabled = false;
+				 }
+
+				 isUpdating = !isUpdating;
+
+				 //if (isUpdating == true)
+				 //{
+					// buttonElapsedTime->Text = "Show Elapsed Time";
+					// timerElapsedTime->Enabled = false;
+					// isUpdating = false;
+					// 
+				 //}
+
+				 //else if (isUpdating == false)
+				 //{
+					// buttonElapsedTime->Text = "Hide Elapsed Time";
+					// timerElapsedTime->Enabled = true;
+					// isUpdating == true;
+				 //}
+			 }
+
+private: System::Void timerElapsedTime_Tick(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 ///////////////////////////////////////////////////////
+			 //		LOCAL VARIABLES/OBJECTS
+			 ///////////////////////////////////////////////////////
+			 DateTime	dateTimeNow	= DateTime::Now;
+			 TimeSpan	timeSpanDifference;
+			 /////////////////////////////////////////////////////// 
+
+			 timeSpanDifference = dateTimeNow.Subtract( dateTimeStart );
+			 labelElapsedTime->Text = timeSpanDifference.Seconds.ToString() + " seconds elapsed";
+		 }
+};
 }
