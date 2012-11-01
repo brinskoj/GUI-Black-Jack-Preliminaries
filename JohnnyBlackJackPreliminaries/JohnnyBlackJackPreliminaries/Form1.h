@@ -12,7 +12,7 @@
 ***   Instructor				:			Professor Forman				***
 ***   Hours						:			9								***
 ***   Difficulty				:			4								***
-***   Completion Date			:			10/28/2012						***
+***   Completion Date			:			10/30/2012						***
 ***   Project Name				:  			JohnnyBlackJackPreliminaries	***	 
 ***																			***
 *******************************************************************************
@@ -40,6 +40,7 @@
 ***					Event-Defined Function List						***
 ***                                                         		***
 ***		buttonDateTime_Click										***
+***		buttonElapsedTime_Click										***
 ***		buttonExit_Click											***
 ***		pictureBoxAceL_Click										***
 ***		pictureBoxFiveL_Click										***
@@ -48,6 +49,7 @@
 ***		pictureBox5R_Click											***
 ***		pictureBoxJackR_Click										***
 ***		buttonPlayOn_Click											***
+***		timerElapsedTime_Tick										***
 ***																	***
 ***********************************************************************
 ***********************************************************************
@@ -79,6 +81,12 @@
 ***																	***
 ***		Farewell music:												***
 ***	http://www.gamefront.com/files/12899141/Portal_Radio_Loop		***
+***																	***
+***		Jose's cards from class, provided by Professor Forman		***
+***																	***
+***		Animated gif of blackjack dealing							***
+***			(used gifsoup.com to convert video to gif)				***
+***	http://www.youtube.com/watch?v=K_GkNbW5jpk						***
 ***																	***
 ***********************************************************************
 ***********************************************************************
@@ -518,6 +526,7 @@ namespace JohnnyBlackJackPreliminaries {
 			this->labelElapsedTime->TabIndex = 26;
 			this->labelElapsedTime->Text = L"0 seconds elapsed";
 			this->labelElapsedTime->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->labelElapsedTime->Visible = false;
 			// 
 			// timerElapsedTime
 			// 
@@ -577,6 +586,7 @@ namespace JohnnyBlackJackPreliminaries {
 	//				GLOBAL VARIABLES/OBJECTS
 	///////////////////////////////////////////////////////
 	static bool firstCardSelected	= false;
+	static bool	isUpdating			= false;
 	static bool leftSide			= 0;
 	static bool rightSide			= 0;
 	static int  counter				= 0;
@@ -607,6 +617,34 @@ private: System::Void buttonDateTime_Click(System::Object^  sender, System::Even
 		 {
 			 displayDateTime();
 		 }
+
+/**************************************************************
+***                                                			***
+***    buttonElapsedTime_Click								***
+***                                                			***
+***		Toggles timerElapsedTime to show the elapsed time,	***
+***		updates the label text to "Show|Hide Elapsed Time"	***
+***                                                			***
+**************************************************************/
+
+private: System::Void buttonElapsedTime_Click(System::Object^  sender, System::EventArgs^  e) 
+			 { 
+				 if (isUpdating == false)
+				 {
+					 buttonElapsedTime->Text = "Hide Elapsed Time";
+					 timerElapsedTime->Enabled = true;
+					 labelElapsedTime->Visible = true;
+				 }
+
+				 else
+				 {
+					 buttonElapsedTime->Text = "Show Elapsed Time";
+					 timerElapsedTime->Enabled = false;
+					 labelElapsedTime->Visible = false;
+				 }
+
+				 isUpdating = !isUpdating;
+			 }
 
 /**************************************************************
 ***                                                			***
@@ -785,6 +823,30 @@ private: System::Void buttonPlayOn_Click(System::Object^  sender, System::EventA
 		 }
 
 /**************************************************************
+***                                                			***
+***    timerElapsedTime_Tick								***
+***                                                			***
+***		Takes the current time and subtracts from the time	***
+***		when the program loaded. Displays this time in		***
+***		seconds in a labelElapsedTime.						***
+***                                                			***
+**************************************************************/
+
+private: System::Void timerElapsedTime_Tick(System::Object^  sender, System::EventArgs^  e) 
+		 {
+			 ///////////////////////////////////////////////////////
+			 //		LOCAL VARIABLES/OBJECTS
+			 ///////////////////////////////////////////////////////
+			 DateTime	dateTimeNow	= DateTime::Now;
+			 TimeSpan	timeSpanDifference;
+			 /////////////////////////////////////////////////////// 
+
+			 timeSpanDifference = dateTimeNow.Subtract( dateTimeStart );
+			 labelElapsedTime->Text = timeSpanDifference.Minutes.ToString() + " min "
+									+ timeSpanDifference.Seconds.ToString() + " seconds elapsed";
+		 }
+
+/**************************************************************
 ***************************************************************
 ***                                                			***
 ***   END EVENT-DRIVEN FUNCTION DECLARATIONS/DEFINITIONS    ***
@@ -857,7 +919,7 @@ void farewell()
 				 "	Instructor			:	Professor Forman\n"
 				 "	Hours			:	9\n"
 				 "	Difficulty			:	4\n"
-				 "	Completion Date		:	10/28/2012\n"
+				 "	Completion Date		:	10/30/2012\n"
 				 "	Project Name		:	JohnnyBJPreliminaries\n\n"
 				 "**************************************************************************************\n"
 				 "**************************************** CREDITS ************************************\n\n"
@@ -866,11 +928,16 @@ void farewell()
 				 "*************************************************************************************\n"
 				 "**************************************** MEDIA *************************************\n\n"
 				 "Farewell music:\n"
-				 "http://www.gamefront.com/files/12899141/Portal_Radio_Loop" );
+				 "http://www.gamefront.com/files/12899141/Portal_Radio_Loop" 
+				 "\n\nJose's cards from class, provided by Professor Forman"
+				 "\n\nAnimated gif of blackjack dealing\n"
+				 "	(used gifsoup.com to convert video to gif)\n"
+				 "http://www.youtube.com/watch?v=K_GkNbW5jpk"
+				 );
 		MessageBox::Show(
 				 "*************************************************************************************\n"
 				 "************************************** # OF STARS **********************************\n\n"
-				 "7 stars\n\n"
+				 "8 stars\n\n"
 				 "*************************************************************************************\n"
 				 "**************************************** STARS *************************************\n\n"
 				 "1. Display image of card selected in the appropriate picture box\n"
@@ -880,6 +947,7 @@ void farewell()
 				 "5. If the player selects an Ace, give the player a choice of using the Ace as 11 or 1.\n"
 				 "6. In the farewell, report how many times the card sums were of each result.\n"
 				 "7. Demo before the due date.\n"
+				 "8. Display elapsed time.\n"
 				 );
 	Close();
 }
@@ -1013,6 +1081,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 		if (rightSide < 1)	// Check to see if this is the first time selecting a card from the right side
 		{
 			rightSide++;	// This will make sure we don't pick from the right side again
+
 			if ( firstCardSelected == false)
 			{
 				// Burpback card selection
@@ -1032,6 +1101,7 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 				// Confirm that this card is the first selected
 				firstCardSelected         = true;
 			}
+
 			else	// We must've already selected the first card
 			{
 				// Burpback card selection
@@ -1097,55 +1167,5 @@ void selectCard(String^ stringCardName, int intCardValue, String^ stringCardSuit
 ***************************************************************
 **************************************************************/
 
-	private: System::Void buttonElapsedTime_Click(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 ///////////////////////////////////////////////////////
-				 //		LOCAL VARIABLES/OBJECTS
-				 ///////////////////////////////////////////////////////
-				 bool	isUpdating;
-				 ///////////////////////////////////////////////////////
-				 
-				 if (isUpdating == false)
-				 {
-					 buttonElapsedTime->Text = isUpdating.ToString();
-					 timerElapsedTime->Enabled = true;
-				 }
-
-				 else
-				 {
-					 buttonElapsedTime->Text = isUpdating.ToString();
-					 timerElapsedTime->Enabled = false;
-				 }
-
-				 isUpdating = !isUpdating;
-
-				 //if (isUpdating == true)
-				 //{
-					// buttonElapsedTime->Text = "Show Elapsed Time";
-					// timerElapsedTime->Enabled = false;
-					// isUpdating = false;
-					// 
-				 //}
-
-				 //else if (isUpdating == false)
-				 //{
-					// buttonElapsedTime->Text = "Hide Elapsed Time";
-					// timerElapsedTime->Enabled = true;
-					// isUpdating == true;
-				 //}
-			 }
-
-private: System::Void timerElapsedTime_Tick(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 ///////////////////////////////////////////////////////
-			 //		LOCAL VARIABLES/OBJECTS
-			 ///////////////////////////////////////////////////////
-			 DateTime	dateTimeNow	= DateTime::Now;
-			 TimeSpan	timeSpanDifference;
-			 /////////////////////////////////////////////////////// 
-
-			 timeSpanDifference = dateTimeNow.Subtract( dateTimeStart );
-			 labelElapsedTime->Text = timeSpanDifference.Seconds.ToString() + " seconds elapsed";
-		 }
 };
 }

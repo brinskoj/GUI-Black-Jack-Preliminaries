@@ -1,25 +1,59 @@
-﻿Build started 10/28/2012 8:47:51 PM.
-     1>Project "C:\Users\tripgod\Dropbox\cplusplus\GUI-Black-Jack-Preliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries.vcxproj" on node 2 (build target(s)).
+﻿Build started 10/30/2012 10:49:25 AM.
+     1>Project "C:\Users\T33102.CITYINS\Documents\Visual Studio 2010\working\JohnnyTA2.BJ\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\JohnnyBlackJackPreliminaries.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
          All outputs are up-to-date.
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\JohnnyBlackJackPreliminaries.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt JohnnyBlackJackPreliminaries.cpp /clr:nostdlib 
+         JohnnyBlackJackPreliminaries.cpp
+     1>c:\users\t33102.cityins\documents\visual studio 2010\working\johnnyta2.bj\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(1020): warning C4804: '<' : unsafe use of type 'bool' in operation
+     1>c:\users\t33102.cityins\documents\visual studio 2010\working\johnnyta2.bj\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(1065): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\t33102.cityins\documents\visual studio 2010\working\johnnyta2.bj\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(1065): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\t33102.cityins\documents\visual studio 2010\working\johnnyta2.bj\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(1081): warning C4804: '<' : unsafe use of type 'bool' in operation
+     1>c:\users\t33102.cityins\documents\visual studio 2010\working\johnnyta2.bj\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(1127): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\t33102.cityins\documents\visual studio 2010\working\johnnyta2.bj\johnnyblackjackpreliminaries\johnnyblackjackpreliminaries\Form1.h(1127): warning C4804: '>=' : unsafe use of type 'bool' in operation
          All outputs are up-to-date.
-         All outputs are up-to-date.
+       ManagedIncrementalBuildPostProcessDependencyGraph:
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 10.0\VC\BIN\1033\CLUI.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 10.0\COMMON7\IDE\MSPDBSRV.EXE' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\MSCORLIB.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.CORE.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.DATA.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.DRAWING.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.WINDOWS.FORMS.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.XML.DLL' or one of its dependencies. The system cannot find the file specified.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES (X86)\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\MICROSOFT.VISUALC.DLL' or one of its dependencies. The system cannot find the file specified.
        CoreResGen:
          All outputs are up-to-date.
        ResourceCompile:
          All outputs are up-to-date.
        Link:
-         All outputs are up-to-date.
-         JohnnyBlackJackPreliminaries.vcxproj -> C:\Users\tripgod\Dropbox\cplusplus\GUI-Black-Jack-Preliminaries\JohnnyBlackJackPreliminaries\Debug\JohnnyBlackJackPreliminaries.exe
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\T33102.CITYINS\Documents\Visual Studio 2010\working\JohnnyTA2.BJ\JohnnyBlackJackPreliminaries\Debug\JohnnyBlackJackPreliminaries.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\JohnnyBlackJackPreliminaries.Form1.resources /MANIFEST /ManifestFile:"Debug\JohnnyBlackJackPreliminaries.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\T33102.CITYINS\Documents\Visual Studio 2010\working\JohnnyTA2.BJ\JohnnyBlackJackPreliminaries\Debug\JohnnyBlackJackPreliminaries.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         Debug\AssemblyInfo.obj
+         Debug\JohnnyBlackJackPreliminaries.obj
+         Debug\stdafx.obj
+         "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
+         JohnnyBlackJackPreliminaries.vcxproj -> C:\Users\T33102.CITYINS\Documents\Visual Studio 2010\working\JohnnyTA2.BJ\JohnnyBlackJackPreliminaries\Debug\JohnnyBlackJackPreliminaries.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\T33102.CITYINS\Documents\Visual Studio 2010\working\JohnnyTA2.BJ\JohnnyBlackJackPreliminaries\Debug\JohnnyBlackJackPreliminaries.exe;#1" /manifest Debug\JohnnyBlackJackPreliminaries.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Debug\JohnnyBlackJackPreliminaries.unsuccessfulbuild".
          Touching "Debug\JohnnyBlackJackPreliminaries.lastbuildstate".
-     1>Done Building Project "C:\Users\tripgod\Dropbox\cplusplus\GUI-Black-Jack-Preliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\T33102.CITYINS\Documents\Visual Studio 2010\working\JohnnyTA2.BJ\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries\JohnnyBlackJackPreliminaries.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.72
+Time Elapsed 00:00:02.59
