@@ -86,7 +86,7 @@
 ***																	***
 ***		Animated gif of blackjack dealing							***
 ***			(used gifsoup.com to convert video to gif)				***
-***	http://www.youtube.com/watch?v=K_GkNbW5jpk						***
+***	http://www.youtube.com/watch?v=V6WQrbauJEQ						***
 ***																	***
 ***********************************************************************
 ***********************************************************************
@@ -932,7 +932,7 @@ void farewell()
 				 "\n\nJose's cards from class, provided by Professor Forman"
 				 "\n\nAnimated gif of blackjack dealing\n"
 				 "	(used gifsoup.com to convert video to gif)\n"
-				 "http://www.youtube.com/watch?v=K_GkNbW5jpk"
+				 "http://www.youtube.com/watch?v=V6WQrbauJEQ"
 				 );
 		MessageBox::Show(
 				 "*************************************************************************************\n"
